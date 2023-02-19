@@ -1,0 +1,19 @@
+image: "kroniak/ssh-client"
+
+stages:
+  - staging
+
+deploy_staging:
+  stage: staging
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_STG" | base64 -d)
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh -tt $STG_HOST " cd /app/ductin/ductin-be/ && git pull && docker compose up -d --build"
+  when: manual
+  only:
+    - develop
+
+

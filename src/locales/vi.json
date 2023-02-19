@@ -1,0 +1,23 @@
+{
+  "success": "Thành công",
+  "forbidden": "Không có quyền truy cập thông tin",
+
+  "max_size_warning": "Dung lượng tối đa là 10 MB",
+  "image_not_found": "Không tìm thấy hình ảnh",
+  "image_not_format": "Tệp không hợp lệ. Vui lòng thử lại",
+  "file_not_found": "Không tìm thấy tệp",
+  "data_not_found": "Không tìm thấy dữ liệu",
+
+  "profile_not_found": "Không tìm thấy thông tin",
+  "phone_exist": "Số điện thoại đã tồn tại",
+
+  "user_not_found": "Không tìm thấy người dùng",
+  "username_exist": "Tên người dùng đã tồn tại",
+  "invalid_username": "Tên người dùng không hợp lệ",
+
+  "old_password_not_match": "Mật khẩu cũ không chính xác",
+  "new_password_not_match": "Mật khẩu mới và xác nhận mật khẩu mới không chính xác",
+  "password_not_invalid": "Mật khẩu chứa ký tự không hợp lệ ",
+  "invalid_token": "Mã token không hợp lệ",
+  "username_or_password_incorrect": "Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại."
+}

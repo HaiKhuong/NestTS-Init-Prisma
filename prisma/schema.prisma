@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ***** ENUM ***** //
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum Language {
+  VI
+  EN
+}
+
+// ***** MODEL ***** //
+
+model Register_Code {
+  id        String   @id @default(cuid())
+  email     String   @unique @db.VarChar(255)
+  code      String   @db.VarChar(20)
+  isUsed    Boolean  @default(false) @db.TinyInt()
+  expiredAt DateTime
+}
+
+model Reset_Password_Token {
+  id        String   @id @default(cuid())
+  username  String   @unique @db.VarChar(255)
+  email     String   @db.VarChar(255)
+  token     String   @db.VarChar(32)
+  isUsed    Boolean  @default(false) @db.TinyInt()
+  expiredAt DateTime
+}
+
+model User {
+  id       String  @id @default(cuid()) @db.VarChar(32)
+  username String  @db.VarChar(255)
+  password String  @db.VarChar(255)
+  token    String? @db.VarChar(255)
+  status   Status? @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  createdBy String?  @db.VarChar(32)
+  updatedAt DateTime @updatedAt
+  updatedBy String?  @db.VarChar(32)
+  isDeleted Boolean  @default(false) @db.TinyInt()
+  deletedBy String?  @db.VarChar(32)
+
+  profileId String? @unique @db.VarChar(32)
+
+  profile Profile? @relation("user_profile", fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Profile {
+  id                 String    @id @default(cuid()) @db.VarChar(32)
+  code               String    @db.VarChar(32)
+  email              String?   @db.VarChar(255)
+  phone              String?   @db.VarChar(20)
+  fullName           String    @db.VarChar(255)
+  idCardNumber       String?   @db.VarChar(255)
+  gender             Gender?
+  dateOfBirth        DateTime?
+  nationality        String?   @db.VarChar(255)
+  address            String?   @db.Text()
+  issueDate          DateTime?
+  placeOfIssue       String?   @db.VarChar(255)
+  permanentResidence String?   @db.VarChar(255)
+  socialLink         String?   @db.VarChar(255)
+  status             Status    @default(ACTIVE)
+  language           Language  @default(VI)
+
+  createdAt DateTime @default(now())
+  createdBy String?  @db.VarChar(32)
+  updatedAt DateTime @updatedAt
+  updatedBy String?  @db.VarChar(32)
+  isDeleted Boolean  @default(false) @db.TinyInt()
+  deletedBy String?  @db.VarChar(32)
+
+  user   User?  @relation("user_profile")
+  avatar Image? @relation("profile_avatar")
+}
+
+model Image {
+  id   String  @id @default(cuid()) @db.VarChar(32)
+  name String? @db.Text()
+  url  String  @db.Text()
+
+  profileId String? @unique @db.VarChar(32)
+
+  profile Profile? @relation("profile_avatar", fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model File {
+  id   String  @id @default(cuid()) @db.VarChar(32)
+  name String? @db.Text()
+  url  String  @db.Text()
+}

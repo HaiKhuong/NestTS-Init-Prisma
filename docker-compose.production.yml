@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  api_production:
+    container_name: api_production
+    image: ductin_api_production
+    build:
+      context: .
+      dockerfile: ./Dockerfile.production
+    ports:
+      - 3000:3000
+    networks:
+      - ductin
+networks:
+  ductin:
+    external: true

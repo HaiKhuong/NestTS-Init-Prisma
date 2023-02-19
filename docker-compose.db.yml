@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_DATABASE: ductin
+      MARIADB_USER: ductin
+      MARIADB_PASSWORD: 123123
+      MARIADB_ROOT_PASSWORD: 123123
+    volumes:
+      - "./.db:/var/lib/mysql"
+      - "./.db_config:/etc/mysql"
+    networks:
+      - ductin
+networks:
+  ductin:
+    external: true

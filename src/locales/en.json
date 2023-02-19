@@ -1,0 +1,23 @@
+{
+  "success": "Success",
+  "forbidden": "Forbidden",
+
+  "max_size_warning": "Max size is 10 MB",
+  "image_not_found": "Image not found",
+  "image_not_format": "File is invalid. Please try again",
+  "file_not_found": "File not found",
+  "data_not_found": "Data not found",
+
+  "profile_not_found": "Profile not found",
+  "phone_exist": "Phone already exists",
+
+  "user_not_found": "User not found",
+  "username_exist": "Username already exists",
+  "invalid_username": "Username invalid",
+
+  "old_password_not_match": "Old password not match",
+  "new_password_not_match": "New password and confirm new password not match",
+  "password_not_invalid": "The password contains invalid characters",
+  "invalid_token": "Invalid token",
+  "username_or_password_incorrect": "Username or password incorrect. Please try again."
+}

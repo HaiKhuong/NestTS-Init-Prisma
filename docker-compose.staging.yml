@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  api_staging:
+    container_name: api_staging
+    image: ductin_api_staging
+    build:
+      context: .
+      dockerfile: ./Dockerfile.staging
+    ports:
+      - 3000:3000
+    networks:
+      - ductin
+networks:
+  ductin:
+    external: true

@@ -1,0 +1,16 @@
+FROM node:16-alpine
+
+COPY ["package.json", "yarn.lock", "./"]
+RUN yarn install --frozen-lockfile --production=false
+
+COPY . .
+RUN mv .env.production.build .env
+RUN rm -rf .env.*
+
+RUN yarn global add prisma
+RUN yarn global add @prisma/client
+
+RUN yarn prisma generate
+RUN yarn build
+
+CMD yarn prisma db push && yarn start

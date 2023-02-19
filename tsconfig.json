@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true,
+    "noUnusedLocals": false /* Enable error reporting when a local variables aren't read. */,
+    "noUnusedParameters": false /* Raise an error when a function parameter isn't read */,
+    "paths": {
+      "@api/*": ["src/api/*"],
+      "@app/*": ["src/api-app/*"],
+      "@member/*": ["src/api-member/*"],
+      "@auth/*": ["src/auth/*"],
+      "@services": ["src/services"],
+      "@services/*": ["src/services/*"],
+      "@decorators": ["src/decorators"],
+      "@locales/*": ["src/locales/*"],
+      "@enums": ["src/enums"],
+      "@utils": ["src/utils"],
+      "@types": ["src/types"],
+      "@data/*": ["src/data/*"],
+      "@/*": ["src/*"]
+    }
+  }
+}
